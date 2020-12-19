@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import { Card, Button, Icon } from 'react-native-elements'
 import styles from './styles/main'
-import { NavigationContainer } from '@react-navigation/native';
 
 const Main = ({ navigation }) => {
     return(

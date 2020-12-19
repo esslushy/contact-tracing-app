@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-import styles from './styles/report'
+import styles from './styles/report';
 
 const Report = () => {
 
@@ -21,13 +22,13 @@ const Report = () => {
         setDateReceived(currentDate);
     };
 
-    const testType = 'Throat'
+    let testType = 'Throat'
 
     return (
         <>
             <View style={styles.body}>
                 <View style={styles.formItems}>
-                    <Text>Date You Were Tested On:</Text>
+                    <Text style={styles.labelText}>Date You Were Tested On:</Text>
                     <DateTimePicker
                         testID="dateTimePicker"
                         value={dateTested}
@@ -38,7 +39,7 @@ const Report = () => {
                     />
                 </View>
                 <View style={styles.formItems}>
-                    <Text>Date You Were Tested On:</Text>
+                    <Text style={styles.labelText}>Date You Received Results On:</Text>
                     <DateTimePicker
                         testID="dateTimePicker"
                         value={dateReceived}
@@ -49,7 +50,7 @@ const Report = () => {
                     />
                 </View>
                 <View style={styles.formItems}>
-                    <Text>Test Type</Text>
+                    <Text style={styles.labelText}>Test Type</Text>
                     <DropDownPicker
                         items={[
                             {label: 'Throat', value: 'Throat'},
@@ -70,7 +71,29 @@ const Report = () => {
                 </View>
             </View>
             <View style={styles.submitButton}>
-                <Button title='Submit'/>
+                <Button title='Submit' onPress={() => {
+                        let dateTestedSQL = `${dateTested.getFullYear()}-${dateTested.getMonth()+1}-${dateTested.getDate()}`;
+                        let dateReceivedSQL = `${dateReceived.getFullYear()}-${dateReceived.getMonth()+1}-${dateReceived.getDate()}`;
+                        fetch('http://192.168.1.239:3000/report', {
+                            method: 'POST',
+                            headers: {
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                dateTested: dateTestedSQL,
+                                dateReceived: dateReceivedSQL,
+                                testType: testType
+                            })
+                        })
+                        .then((response) => {
+                            console.log("Success")
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                    }
+                }/>
             </View>
         </>
     );

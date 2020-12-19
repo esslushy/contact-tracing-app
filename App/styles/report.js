@@ -12,10 +12,13 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     labelText: {
-
+        fontSize: 16,
+        paddingBottom: 10,
     },
     submitButton: {
-        height: 100
+        height: 100,
+        width: '90%',
+        alignSelf: 'center',
     }
 })
 

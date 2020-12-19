@@ -10,8 +10,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ThemeProvider } from 'react-native-elements';
-import { Appearance } from 'react-native';
+import { ThemeProvider, Button } from 'react-native-elements';
 import Main from './App/main';
 import Report from './App/report';
 
