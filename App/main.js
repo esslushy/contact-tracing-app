@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Card, Button, Icon } from 'react-native-elements'
 import styles from './styles/main'
+import { day_start_from_time, batch_start_from_time, generate_new_day_key } from './contact-tracing/ephid-creation'
 
 const Main = ({ navigation }) => {
     return(
@@ -20,7 +21,7 @@ const Main = ({ navigation }) => {
                 />
                 <Button 
                     title="Test"
-                    onPress={() => navigation.navigate('Report')}
+                    onPress={(generate_new_day_key)}
                 />
             </View>
         </>

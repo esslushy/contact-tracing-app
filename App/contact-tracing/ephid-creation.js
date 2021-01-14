@@ -1,6 +1,5 @@
 const Buffer = require('buffer')
-// In place secure cryptographic shuffle
-// const secure_shuffle = require("crypto-secure-shuffle")
+// const crypto = require('crypto');
 
 import { SECONDS_PER_DAY } from './config'
 // Constant string "broadcast key" for domain seperation
@@ -40,10 +39,14 @@ function batch_start_from_time(time) {
    return Math.floor(time/SECONDS_PER_BATCH) * SECONDS_PER_BATCH
 }
 
-// Basic cryptographic functions
-function generate_new_day_key(){
-    // Generates a new key for a fresh user.
-    return 
+function secure_shuffle(items){
+    
 }
 
-export { day_start_from_time, batch_start_from_time, }
+// Basic cryptographic functions
+function generate_new_day_key(){
+    // Get set of random bytes
+    console.log(crypto.randomBytes(32).toString('hex'))
+}
+
+export { day_start_from_time, batch_start_from_time, generate_new_day_key }
