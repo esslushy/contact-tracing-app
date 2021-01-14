@@ -18,6 +18,10 @@ const Main = ({ navigation }) => {
                     title="Report Positive Case"
                     onPress={() => navigation.navigate('Report')}
                 />
+                <Button 
+                    title="Test"
+                    onPress={() => navigation.navigate('Report')}
+                />
             </View>
         </>
     )

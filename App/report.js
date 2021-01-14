@@ -64,8 +64,8 @@ const Report = () => {
                             justifyContent: 'flex-start'
                         }}
                         dropDownStyle={{backgroundColor: '#fafafa'}}
-                        onChangeItem={(item, index) =>
-                            testType = item
+                        onChangeItem={(item, index) => 
+                            testType = item.value
                         }
                     />
                 </View>
@@ -74,7 +74,7 @@ const Report = () => {
                 <Button title='Submit' onPress={() => {
                         let dateTestedSQL = `${dateTested.getFullYear()}-${dateTested.getMonth()+1}-${dateTested.getDate()}`;
                         let dateReceivedSQL = `${dateReceived.getFullYear()}-${dateReceived.getMonth()+1}-${dateReceived.getDate()}`;
-                        fetch('http://192.168.1.239:3000/report', {
+                        fetch('http://72.182.53.47:3000/report', {
                             method: 'POST',
                             headers: {
                                 Accept: 'application/json',
@@ -91,6 +91,25 @@ const Report = () => {
                         })
                         .catch((error) => {
                             console.log(error);
+                            console.log("Can't connect to server, trying backup local server.")
+                            fetch('http://192.168.1.238:3000/report', {
+                                method: 'POST',
+                                headers: {
+                                    Accept: 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    dateTested: dateTestedSQL,
+                                    dateReceived: dateReceivedSQL,
+                                    testType: testType
+                                })
+                            })
+                            .then((response) => {
+                                console.log("Success")
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
                         });
                     }
                 }/>
