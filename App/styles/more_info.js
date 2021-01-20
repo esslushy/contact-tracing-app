@@ -6,9 +6,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center'
     },
-    exposure: {
-        height: 200
-    }
+    
 })
 
 export default styles;

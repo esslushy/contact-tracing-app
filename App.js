@@ -13,6 +13,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider, Button } from 'react-native-elements';
 import Main from './App/main';
 import Report from './App/report';
+import MoreInfo from './App/more_info'
 
 // Make navigation controller
 const Stack = createStackNavigator();
@@ -23,6 +24,7 @@ const App = () => {
         <Stack.Navigator>
           <Stack.Screen name="Main" component={Main} options={{ title: 'Contact Tracing' }} />
           <Stack.Screen name="Report" component={Report} />
+          <Stack.Screen name="More Info" component={MoreInfo} />
         </Stack.Navigator>
       </NavigationContainer>
   );
